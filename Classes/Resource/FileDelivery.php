@@ -75,11 +75,11 @@ class FileDelivery implements SingletonInterface
         $this->dispatchOutputInitializationEvent();
 
         if (!$this->hasAccess() && !$this->isBackendUser()) {
-            return $this->getAccessDeniedResponse($request, 'Access check failed.');
+            return $this->getAccessDeniedResponse($request, 'access.page');
         }
 
         if (!$this->isBackendUser() && $this->token->getPage() === 0 && $this->token->getUser() === 0) {
-            return $this->getAccessDeniedResponse($request, 'Backend link detected.');
+            return $this->getAccessDeniedResponse($request, 'access.page');
         }
 
         $file = GeneralUtility::getFileAbsFileName(ltrim($this->token->getFile(), '/'));
